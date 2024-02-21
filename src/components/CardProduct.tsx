@@ -1,12 +1,10 @@
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 type PropType = {
   title: string;
-  description: string;
   img: string;
   id: number;
 };
-export default function CardProduct({ title, description, img, id }: PropType) {
+export default function CardProduct({ title, img, id }: PropType) {
   return (
     <Card className="py-3 px-1 ">
       <Card.Img style={{ height: "240px" }} variant="top" src={img} />
