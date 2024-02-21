@@ -13,7 +13,7 @@ function NavBar() {
         </Navbar.Text>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto r-1">
+          <Nav className="me-auto m">
             {navMenu.map((item) => (
               <Nav.Link key={item.id} href={item.path}>
                 {item.text}
