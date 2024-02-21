@@ -6,7 +6,7 @@ import { navMenu } from "../data";
 
 function NavBar() {
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-white shadow-sm">
+    <Navbar collapseOnSelect expand="lg" className="bg-white shadow-sm mb-3">
       <Container>
         <Navbar.Text>
           <Logo />
