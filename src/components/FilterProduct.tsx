@@ -1,4 +1,5 @@
-import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 export default function FilterProduct() {
   const sort = [
     {
@@ -31,7 +32,11 @@ export default function FilterProduct() {
             <span key={item.id}>{item.text}</span>
           ))}
         </div>
-        <Button variant="primary">مقایسه</Button>
+        <DropdownButton id="dropdown-basic-button" title="مقایسه">
+          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+        </DropdownButton>
       </div>
     </section>
   );
