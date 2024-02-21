@@ -27,7 +27,7 @@ const slider = [
   },
 ];
 
-const product = [
+const products = [
   {
     id: 1,
     img: product1,
@@ -494,4 +494,4 @@ const product = [
   },
 ];
 
-export { navMenu, slider, product };
+export { navMenu, slider, products };
