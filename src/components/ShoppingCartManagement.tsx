@@ -11,9 +11,10 @@ export default function ShoppingCartManagement({
   const { addItem, decreaseItem, removeItem } = useCartContext();
   return qty === 0 ? (
     <i
-      className="bi bi-plus-circle"
+      className="bi bi-plus-circle d-flex"
       style={{
         cursor: "pointer",
+        width: "fit-content",
       }}
       onClick={() => addItem(id)}
     ></i>

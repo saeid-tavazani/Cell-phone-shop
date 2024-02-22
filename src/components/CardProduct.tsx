@@ -40,7 +40,7 @@ export default function CardProduct({
           </span>
           <span>{price.toString().concat(" تومان")}</span>
         </div>
-        <ShoppingCartManagement qty={qty} id={id} />
+        {quantity !== 0 ? <ShoppingCartManagement qty={qty} id={id} /> : ""}
       </Card.Body>
     </Card>
   );
