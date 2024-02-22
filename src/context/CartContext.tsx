@@ -26,7 +26,7 @@ export function useCartContext() {
 
 export function CartProvider({ children }: CartProviderProps) {
   const [cartItems, setCartItems] = useLocalStroage<CartItem[]>(
-    "shopping-cart",
+    "shopping-cart-phone",
     []
   );
   const cartQty = cartItems.reduce((qty, item) => item.qty + qty, 0);

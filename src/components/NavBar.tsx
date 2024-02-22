@@ -1,10 +1,12 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useCartContext } from "../context/CartContext";
 import Logo from "./Logo";
 import { navMenu } from "../data";
 
 function NavBar() {
+  const { cartQty } = useCartContext();
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-white shadow-sm mb-3">
       <Container>
@@ -27,18 +29,23 @@ function NavBar() {
               href="/cart"
             >
               <i className="bi bi-bag"></i>
-              <span
-                className="position-absolute bg-primary rounded-circle text-light d-flex align-items-center justify-content-center"
-                style={{
-                  width: "1rem",
-                  height: "1rem",
-                  fontSize: "0.7rem",
-                  bottom: "-4px",
-                  right: "-4px",
-                }}
-              >
-                1
-              </span>
+
+              {cartQty ? (
+                <span
+                  className="position-absolute bg-primary rounded-circle text-light d-flex align-items-center justify-content-center"
+                  style={{
+                    width: "1rem",
+                    height: "1rem",
+                    fontSize: "0.7rem",
+                    bottom: "-4px",
+                    right: "-4px",
+                  }}
+                >
+                  {cartQty}
+                </span>
+              ) : (
+                ""
+              )}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
