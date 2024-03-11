@@ -8,8 +8,8 @@ export default function Footer() {
       <Container className="d-flex flex-column pt-5">
         <div className="row mb-4">
           <div className="flex flex-column col">
-            <Logo />
-            <p className="text-light w-75 mt-2">
+            <Logo width="100px" />
+            <p className="text-light w-75 mt-3 mb-3 ">
               توضیحات مربوطه توضیحات مربوطه توضیحات مربوطه توضیحات مربوطه
               توضیحات مربوطه
             </p>
