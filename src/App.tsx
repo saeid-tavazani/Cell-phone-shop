@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { CartProvider } from "./context/CartContext";
 import { Home, Cart, Payment, Transport } from "./page";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 export default function App() {
   return (
     <CartProvider>
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/transport" element={<Transport />} />
         </Routes>
       </Container>
+      <Footer />
     </CartProvider>
   );
 }
