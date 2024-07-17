@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { CartProvider } from "./context/CartContext";
+import { CardProvider } from "./context/CartContext";
 import { Home, Cart, Payment, Transport } from "./page";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 export default function App() {
   return (
-    <CartProvider>
+    <CardProvider>
       <NavBar />
       <Container>
         <Routes>
@@ -17,6 +17,6 @@ export default function App() {
         </Routes>
       </Container>
       <Footer />
-    </CartProvider>
+    </CardProvider>
   );
 }

@@ -1,14 +1,13 @@
-import { createContext, useContext, ReactNode } from "react";
+import { createContext, ReactNode, useContext } from "react";
 import { useLocalStroage } from "../hook/useLocalStorage";
-type CartProviderProps = {
+
+type CardProviderProps = {
   children: ReactNode;
 };
-
 type CartItem = {
   id: number;
   qty: number;
 };
-
 type CartContext = {
   getItemQty: (id: number) => number;
   addItem: (id: number) => void;
@@ -20,21 +19,22 @@ type CartContext = {
 
 const CartContext = createContext({} as CartContext);
 
-export function useCartContext() {
+export const useCartContext = () => {
   return useContext(CartContext);
-}
+};
 
-export function CartProvider({ children }: CartProviderProps) {
+export const CardProvider = ({ children }: CardProviderProps) => {
   const [cartItems, setCartItems] = useLocalStroage<CartItem[]>(
-    "shopping-cart-phone",
+    "shopping-cart",
     []
   );
+
   const cartQty = cartItems.reduce((qty, item) => item.qty + qty, 0);
 
-  function getItemQty(id: number) {
+  const getItemQty = (id: number) => {
     return cartItems.find((item) => item.id === id)?.qty || 0;
-  }
-  function addItem(id: number) {
+  };
+  const addItem = (id: number) => {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
         return [...currItems, { id, qty: 1 }];
@@ -48,12 +48,11 @@ export function CartProvider({ children }: CartProviderProps) {
         });
       }
     });
-  }
-
-  function decreaseItem(id: number) {
+  };
+  const decreaseItem = (id: number) => {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id)?.qty == 1) {
-        return cartItems.filter((item) => item.id !== id);
+        return currItems.filter((item) => item.id !== id);
       } else {
         return currItems.map((item) => {
           if (item.id === id) {
@@ -64,13 +63,12 @@ export function CartProvider({ children }: CartProviderProps) {
         });
       }
     });
-  }
-
-  function removeItem(id: number) {
+  };
+  const removeItem = (id: number) => {
     setCartItems((currItems) => {
       return currItems.filter((item) => item.id !== id);
     });
-  }
+  };
 
   return (
     <CartContext.Provider
@@ -86,4 +84,4 @@ export function CartProvider({ children }: CartProviderProps) {
       {children}
     </CartContext.Provider>
   );
-}
+};
