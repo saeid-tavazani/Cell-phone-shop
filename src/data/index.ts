@@ -1,11 +1,11 @@
-import phone1 from "../../public/phone1.jpg";
-import phone2 from "../../public/phone2.jpg";
-import product1 from "../../public/product1.webp";
-import product2 from "../../public/product2.webp";
-import product3 from "../../public/product3.webp";
-import product4 from "../../public/product4.webp";
-import product5 from "../../public/product5.webp";
-import product6 from "../../public/product6.webp";
+import phone1 from "/phone1.jpg";
+import phone2 from "/phone2.jpg";
+import product1 from "/product1.webp";
+import product2 from "/product2.webp";
+import product3 from "/product3.webp";
+import product4 from "/product4.webp";
+import product5 from "/product5.webp";
+import product6 from "/product6.webp";
 const navMenu = [
   { id: 1, text: "خانه", path: "/" },
   { id: 2, text: "حساب کاربری", path: "/" },
