@@ -10,7 +10,7 @@ type CartItem = {
 };
 type CartContext = {
   getItemQty: (id: number) => number;
-  addItem: (id: number) => void;
+  addItem: (id: number, maximumOrderQuantity: number) => void;
   decreaseItem: (id: number) => void;
   removeItem: (id: number) => void;
   cartQty: number;
@@ -34,13 +34,13 @@ export const CardProvider = ({ children }: CardProviderProps) => {
   const getItemQty = (id: number) => {
     return cartItems.find((item) => item.id === id)?.qty || 0;
   };
-  const addItem = (id: number) => {
+  const addItem = (id: number, addItemmaximumOrderQuantity: number) => {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
         return [...currItems, { id, qty: 1 }];
       } else {
         return currItems.map((item) => {
-          if (item.id === id) {
+          if (item.id === id && addItemmaximumOrderQuantity > item.qty) {
             return { ...item, qty: item.qty + 1 };
           } else {
             return item;

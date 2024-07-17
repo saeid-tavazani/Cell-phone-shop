@@ -40,7 +40,15 @@ export default function CardProduct({
           </span>
           <span>{price.toString().concat(" تومان")}</span>
         </div>
-        {quantity !== 0 ? <ShoppingCartManagement qty={qty} id={id} /> : ""}
+        {quantity !== 0 ? (
+          <ShoppingCartManagement
+            maximumOrderQuantity={quantity}
+            qty={qty}
+            id={id}
+          />
+        ) : (
+          ""
+        )}
       </Card.Body>
     </Card>
   );

@@ -4,9 +4,11 @@ import { useCartContext } from "../context/CartContext";
 export default function ShoppingCartManagement({
   qty,
   id,
+  maximumOrderQuantity,
 }: {
   qty: number;
   id: number;
+  maximumOrderQuantity: number;
 }) {
   const { addItem, decreaseItem, removeItem } = useCartContext();
   return qty === 0 ? (
@@ -16,7 +18,7 @@ export default function ShoppingCartManagement({
         cursor: "pointer",
         width: "fit-content",
       }}
-      onClick={() => addItem(id)}
+      onClick={() => addItem(id, maximumOrderQuantity)}
     ></i>
   ) : (
     <div className="d-flex align-items-center" style={{ gap: ".5rem" }}>
@@ -26,7 +28,7 @@ export default function ShoppingCartManagement({
           style={{ height: "41.6px" }}
         >
           <i
-            onClick={() => addItem(id)}
+            onClick={() => addItem(id, maximumOrderQuantity)}
             className="bi bi-plus-lg text-success"
             style={{
               verticalAlign: "middle",
