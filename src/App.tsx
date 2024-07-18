@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { CardProvider } from "./context/CartContext";
-import { Home, Cart, Payment, Transport } from "./page";
+import { Home, Cart, Payment, Transport, Delievery } from "./page";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 export default function App() {
@@ -14,6 +14,7 @@ export default function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/transport" element={<Transport />} />
+          <Route path="/delievery" element={<Delievery />} />
         </Routes>
       </Container>
       <Footer />
