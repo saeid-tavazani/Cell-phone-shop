@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext } from "react";
 import { useLocalStroage } from "../hook/useLocalStorage";
+import { products } from "../data";
 
 type CardProviderProps = {
   children: ReactNode;
@@ -15,6 +16,7 @@ type CartContext = {
   removeItem: (id: number) => void;
   cartQty: number;
   cartItems: CartItem[];
+  total: number;
 };
 
 const CartContext = createContext({} as CartContext);
@@ -28,6 +30,11 @@ export const CardProvider = ({ children }: CardProviderProps) => {
     "shopping-cart",
     []
   );
+
+  const total = cartItems.reduce((total, currentItem) => {
+    const product = products.find((item) => item.id === currentItem.id);
+    return total + (product?.price || 0) * currentItem.qty;
+  }, 0);
 
   const cartQty = cartItems.reduce((qty, item) => item.qty + qty, 0);
 
@@ -79,6 +86,7 @@ export const CardProvider = ({ children }: CardProviderProps) => {
         removeItem,
         cartQty,
         cartItems,
+        total,
       }}
     >
       {children}
