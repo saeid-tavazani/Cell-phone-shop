@@ -6,7 +6,7 @@ import { products } from "../data";
 import ShoppingCartManagement from "../components/ShoppingCartManagement";
 
 export default function Cart() {
-  const { cartQty, cartItems, getItemQty } = useCartContext();
+  const { cartQty, cartItems, getItemQty, total } = useCartContext();
   if (!cartQty) {
     return (
       <div className="d-flex align-items-center gap-2">
@@ -16,13 +16,8 @@ export default function Cart() {
     );
   }
 
-  const total = cartItems.reduce((total, currentItem) => {
-    const product = products.find((item) => item.id === currentItem.id);
-    return total + (product?.price || 0) * currentItem.qty;
-  }, 0);
-
   return (
-    <Row className="gap-2">
+    <Row className="gap-2 align-items-start">
       <Col lg={8} md={12} className="d-flex flex-column gap-4">
         {cartItems.map((cartItem, index) => {
           const product = products.find((item) => item.id === cartItem.id);
@@ -68,7 +63,11 @@ export default function Cart() {
             <span>{total}</span>
           </div>
         </div>
-        <Button variant="info" className="text-white w-100">
+        <Button
+          href="/delievery"
+          variant="info"
+          className="text-white w-100 mt-5"
+        >
           ثبت سفارش
         </Button>
       </Col>
