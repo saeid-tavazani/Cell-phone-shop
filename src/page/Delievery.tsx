@@ -5,23 +5,30 @@ import Button from "react-bootstrap/Button";
 import StatusShipping from "../components/StatusShipping";
 import Form from "react-bootstrap/Form";
 import moment from "moment-jalaali";
+import { useState } from "react";
 
-// moment.loadPersian({ dialect: "persian-modern" });
-// let newDate = String(Date.now());
-// console.log("====================================");
-// console.log(Date.now());
-// console.log("====================================");
-// let days = [];
-// for (let i = 0; i < 7; i++) {
-//   const nextDate = moment(newDate).add(i, "days");
-//   const shamsiNextDate = nextDate.format("jYYYY/jMM/jDD");
-//   const nextDayOfWeek = nextDate.format("dddd");
-//   days.push([nextDayOfWeek, shamsiNextDate]);
-// }
+moment.loadPersian({ dialect: "persian-modern" });
+let newDate = String(new Date());
+let days = [];
+for (let i = 0; i < 7; i++) {
+  const nextDate = moment(newDate).add(i, "days");
+  const shamsiNextDate = nextDate.format("jYYYY/jMM/jDD");
+  const nextDayOfWeek = nextDate.format("dddd");
+  days.push([nextDayOfWeek, shamsiNextDate]);
+}
+
 const Delievery = () => {
   const { cartQty, cartItems, getItemQty, total } = useCartContext();
+  const [dateDelivery, setDateDelivery] = useState(days[0][1]);
   const shippingCost = 57000;
-  console.log(Date.now());
+  if (!cartQty) {
+    return (
+      <div className="d-flex align-items-center gap-2">
+        <i className="bi bi-cart3 fs-1"></i>
+        <h1> سبد خرید شما خالی است!</h1>
+      </div>
+    );
+  }
   return (
     <>
       <StatusShipping status={1} />
@@ -37,7 +44,23 @@ const Delievery = () => {
 
             <Form.Check type={"radio"} name="send" label={`تحویل حضوری`} />
           </div>
+          <div className="w-100 d-flex gap-3 flex-wrap justify-content-around border border-2 rounded-3 p-4 my-4">
+            {days.map((item) => (
+              <div
+                key={item[1]}
+                onClick={() => setDateDelivery(item[1])}
+                className={`d-flex flex-column gap-1 align-items-center ${
+                  item[1] === dateDelivery ? "text-primary" : ""
+                }`}
+                style={{ cursor: "pointer" }}
+              >
+                <span>{item[0]}</span>
+                <span>{item[1]}</span>
+              </div>
+            ))}
+          </div>
         </Col>
+
         <Col className="border border-2 rounded-3 p-4 d-flex flex-column justify-content-between">
           <div>
             <div className="d-flex align-items-center justify-content-between ">
